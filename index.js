@@ -9,7 +9,7 @@ const path=require('path')
 const app=express()
 const cors = require('cors')
 dotenv.config()
-
+const PORT=process.env.PORT || 5000
 app.use(cors())
 app.use(body_parser.json())
 app.use('/vendor',Vendor_Routes)
@@ -24,4 +24,4 @@ app.get('/demo',(req,res)=>
 {
     res.send({name:"Pavan Kumar",city:"Kappaladoddi"})
 })
-app.listen(5000,()=>console.log("http://localhost:5000/"))
+app.listen(PORT,()=>console.log("http://localhost:5000/"))
