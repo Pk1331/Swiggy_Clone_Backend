@@ -11,7 +11,7 @@ const cors = require('cors')
 dotenv.config()
 const PORT=process.env.PORT || 5000
 app.use(cors({
-    origin: 'https://swiggy-clone-dashboard-mu.vercel.app',
+    origin: 'https://swiggy-clone-dashboard-hi14vhhr2-pavan-kumars-projects-16b37752.vercel.app/',
     methods: 'GET,POST,PUT,DELETE',
     credentials: true
   }));
