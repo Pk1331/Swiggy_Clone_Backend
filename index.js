@@ -10,12 +10,12 @@ const app=express()
 const cors = require('cors')
 dotenv.config()
 const PORT=process.env.PORT || 5000
-// app.use(cors({
-//     origin: 'https://swiggy-clone-dashboard-mu.vercel.app',
-//     methods: 'GET,POST,PUT,DELETE',
-//     credentials: true
-//   }));
-app.use(cors())
+app.use(cors({
+    origin: 'https://swiggy-clone-dashboard-mu.vercel.app',
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true
+  }));
+
 app.use(body_parser.json())
 app.use('/vendor',Vendor_Routes)
 app.use('/firm',Firm_Routes)
