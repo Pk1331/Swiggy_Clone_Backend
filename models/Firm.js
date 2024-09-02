@@ -28,7 +28,7 @@ const firmSchema= new mongoose.Schema({
         ],
         required:true
     },
-    offer:{
+    Offer:{
         type:String,
     },
     Restaurant_image:{
