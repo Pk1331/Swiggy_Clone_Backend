@@ -10,22 +10,12 @@ const app=express()
 const cors = require('cors')
 dotenv.config()
 const PORT=process.env.PORT || 5000
-const allowedOrigins = [
-    'https://swiggy-clone-dashboard-mu.vercel.app/',
-    'https://swiggy-clone-ui.vercel.app/'
-  ];
-  
-  app.use(cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+app.use(cors({
+    origin: 'https://swiggy-clone-dashboard-mu.vercel.app',
     methods: 'GET,POST,PUT,DELETE',
     credentials: true
   }));
+
 app.use(body_parser.json())
 app.use('/vendor',Vendor_Routes)
 app.use('/firm',Firm_Routes)
