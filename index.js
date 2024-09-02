@@ -10,12 +10,22 @@ const app=express()
 const cors = require('cors')
 dotenv.config()
 const PORT=process.env.PORT || 5000
-app.use(cors({
-    origin: 'https://swiggy-clone-dashboard-hi14vhhr2-pavan-kumars-projects-16b37752.vercel.app',
+const allowedOrigins = [
+    'https://swiggy-clone-dashboard-mu.vercel.app/',
+    'https://swiggy-clone-ui.vercel.app/'
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: 'GET,POST,PUT,DELETE',
     credentials: true
   }));
-
 app.use(body_parser.json())
 app.use('/vendor',Vendor_Routes)
 app.use('/firm',Firm_Routes)
@@ -25,8 +35,4 @@ app.use('/uploads',express.static('uploads'))
 mongoose.connect(process.env.DATABASE_URL)
 .then(()=>console.log("Connection Successfull..."))
 .catch((err)=>console.log(err))
-app.get('/demo',(req,res)=>
-{
-    res.send({name:"Pavan Kumar",city:"Kappaladoddi"})
-})
 app.listen(PORT,()=>console.log("http://localhost:5000/"))
